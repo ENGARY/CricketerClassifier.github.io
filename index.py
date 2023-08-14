@@ -19,8 +19,8 @@ st.markdown("""
 st.markdown("""## This classifier takes a picture of one of the cricketers mentioned above and returns the name of that cricketer.""")
 inp_img = st.file_uploader("Choose file")
 
-face_cascade = cv2.CascadeClassifier("C:/Users/aryan/ML PROJECT/CricketPlayerClassifier/model/openCV/haarCascades/haarcascade_frontalface_default.xml")
-eye_cascade = cv2.CascadeClassifier("C:/Users/aryan/ML PROJECT/CricketPlayerClassifier/model/openCV/haarCascades/haarcascade_eye.xml")
+face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+eye_cascade = cv2.CascadeClassifier("haarcascade_eye.xml")
 
 def get_cropped_image_if_2_eyes(img):
     if (img is not None):
@@ -57,7 +57,7 @@ def w2d(img, mode='haar', level=1):
 
     return imArray_H
 
-model = joblib.load("C:/Users/aryan/ML PROJECT/CricketPlayerClassifier/model/saved_model.pkl")
+model = joblib.load("saved_model.pkl")
 x= []
 dict = {'Bumrah ': 0,
  'Chahal ': 1,
