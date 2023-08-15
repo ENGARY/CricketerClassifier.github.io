@@ -17,7 +17,11 @@ st.markdown("""
             5. Jaspreet Bumrah \n
             6. Yuzi Chahal\n""")
 st.markdown("""## This classifier takes a picture of one of the cricketers mentioned above and returns the name of that cricketer.""")
-st.markdown("Use RGB images only")
+st.write("""### INSTRUCTIONS FOR SELECTION OF IMAGES:
+            1. Choose RGB images only
+    2. Do not use blur images
+    3. Use single person images
+            """)
 inp_img = st.file_uploader("Choose file")
 
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
@@ -80,6 +84,8 @@ if inp_img is not None :
             combined_img = np.vstack((scalled_raw_img.reshape(32*32*3,1),scalled_img_har.reshape(32*32,1)))
         except ValueError:
             st.write("## :pensive: Apologies! there is some error, please try other image.")
+        except NameError:
+            st.write("## :pensive: Apologies! there is some error, please try other image.") 
         x.append(combined_img)
         X= np.array(x).reshape(len(x),len(x[0])).astype("float")
         answer = model.predict(X)
