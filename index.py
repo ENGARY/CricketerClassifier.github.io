@@ -17,6 +17,7 @@ st.markdown("""
             5. Jaspreet Bumrah \n
             6. Yuzi Chahal\n""")
 st.markdown("""## This classifier takes a picture of one of the cricketers mentioned above and returns the name of that cricketer.""")
+st.markdown("Use RGB images only")
 inp_img = st.file_uploader("Choose file")
 
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
