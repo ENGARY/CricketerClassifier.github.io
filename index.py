@@ -8,7 +8,7 @@ import joblib
 import json
 
 
-st.title("Cricket Player Classifier")
+st.title("Cricket :cricket_bat_and_ball: Player Classifier")
 st.markdown(""" 
             1. Virat Kohli \n
             2. Mahendra Singh Dhoni \n
