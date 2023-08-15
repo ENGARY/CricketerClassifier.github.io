@@ -82,14 +82,15 @@ if inp_img is not None :
         scalled_img_har= cv2.resize(img_har,(32,32))
         try:
             combined_img = np.vstack((scalled_raw_img.reshape(32*32*3,1),scalled_img_har.reshape(32*32,1)))
+            x.append(combined_img)
+            X= np.array(x).reshape(len(x),len(x[0])).astype("float")
+            answer = model.predict(X)
+            for i,j in dict.items():
+                  if j==answer[0]:
+                        st.write("## ",i) 
         except ValueError:
             st.write("## :pensive: Apologies! there is some error, please try other image.")
         except NameError:
             st.write("## :pensive: Apologies! there is some error, please try other image.") 
-        x.append(combined_img)
-        X= np.array(x).reshape(len(x),len(x[0])).astype("float")
-        answer = model.predict(X)
-        for i,j in dict.items():
-            if j==answer[0]:
-                st.write("## ",i) 
+        
 
