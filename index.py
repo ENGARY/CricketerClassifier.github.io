@@ -71,12 +71,15 @@ if inp_img is not None :
     img = np.array(read)           
     roi_color = get_cropped_image_if_2_eyes(img)
     if roi_color is None:
-        st.write("## unable to process image, try some other image")
+        st.write("## :sob: Sorry! Unable to process image, Try some other image")
     else:
         scalled_raw_img= cv2.resize(roi_color,(32,32))
         img_har = w2d(roi_color,"db1",5)
         scalled_img_har= cv2.resize(img_har,(32,32))
-        combined_img = np.vstack((scalled_raw_img.reshape(32*32*3,1),scalled_img_har.reshape(32*32,1)))
+        try:
+            combined_img = np.vstack((scalled_raw_img.reshape(32*32*3,1),scalled_img_har.reshape(32*32,1)))
+        except ValueError:
+            st.write("## :pensive: Apologies! there is some error, please try other image.")
         x.append(combined_img)
         X= np.array(x).reshape(len(x),len(x[0])).astype("float")
         answer = model.predict(X)
